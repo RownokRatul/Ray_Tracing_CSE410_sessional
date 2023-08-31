@@ -95,7 +95,7 @@ class Cube : public Object{
         Intersection getIntersectionPoint(Ray ray) {
             Intersection in = Intersection(false);
             for(vector<Point3d> face : faces) {
-                Intersection intersection = getIntersectionWithPolygon(face, ray, this->color);
+                Intersection intersection = getIntersectionWithPolygon(face, ray, this->color, shininess, ambient_coefficient, diffuse_coefficient, reflection_coefficient, specular_coefficient);
                 if(intersection.intersects && intersection.t < in.t) {
                     in = intersection;
                     // cout << "Cube intersected!\n";

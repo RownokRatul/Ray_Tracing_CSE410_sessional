@@ -91,9 +91,9 @@ void readDescriptionFile(string s) {
         }
     }
     readLightSources();
-    for (Object* obj : objects) {
-        obj->print();
-    }
+    // for (Object* obj : objects) {
+    //     obj->print();
+    // }
 }
 
 

@@ -46,7 +46,7 @@ bool is_point_inside_polygon(Point3d p, vector<Point3d> polygon) {
 }
 
 
-Intersection getIntersectionWithPolygon(vector<Point3d> polygon, Ray ray, Color c) {
+Intersection getIntersectionWithPolygon(vector<Point3d> polygon, Ray ray, Color c, GLfloat shine, GLfloat ac, GLfloat dc, GLfloat rc, GLfloat sc) {
     // make sure the polygon is convex and the points are counterclockwise
     Plane plane = Plane(polygon);
     GLfloat t = plane.intersect(ray);
@@ -56,7 +56,7 @@ Intersection getIntersectionWithPolygon(vector<Point3d> polygon, Ray ray, Color 
     Point3d intersection_point = ray.getPointAtaDistance(t);
     if(is_point_inside_polygon(intersection_point, polygon)) {
         // cout << "Intersection with polygon" << endl;
-        return Intersection(intersection_point, plane.getNormal(), c, t, true);
+        return Intersection(intersection_point, plane.getNormal(), c, t, shine, true, ac, dc, rc, sc);
     }
     return Intersection(false);
 }

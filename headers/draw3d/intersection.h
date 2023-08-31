@@ -19,6 +19,11 @@ class Intersection {
         Color color;
         GLfloat t;
         bool intersects;
+        GLfloat shininess;
+        GLfloat ambient_coefficient;
+        GLfloat diffuse_coefficient;
+        GLfloat reflection_coefficient;
+        GLfloat specular_coefficient;
 
         
         Intersection(bool f) {
@@ -27,15 +32,25 @@ class Intersection {
             color = Color(0, 0, 0);
             t = 99999999;
             intersects = f;
+            shininess = 0;
+            ambient_coefficient = 0;
+            diffuse_coefficient = 0;
+            reflection_coefficient = 0;
+            specular_coefficient = 0;
         }
 
 
-        Intersection(Point3d p, Point3d n, Color c, GLfloat t, bool f) {
+        Intersection(Point3d p, Point3d n, Color c, GLfloat t, GLfloat shine, bool f, GLfloat ac, GLfloat dc, GLfloat rc, GLfloat sc) {
             point = p;
             normal = n;
             color = c;
             this->t = t;
             intersects = f;
+            shininess = shine;
+            ambient_coefficient = ac;
+            diffuse_coefficient = dc;
+            reflection_coefficient = rc;
+            specular_coefficient = sc;
         }
 
         void print() {

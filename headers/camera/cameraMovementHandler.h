@@ -41,24 +41,24 @@ void tilt_eye(GLfloat f) {
 
 void translate_camera_right_left(GLfloat f) {
     updateRightVector();
-    camera.centre.x += f*DEL*camera.right.x*20;
-    camera.centre.y += f*DEL*camera.right.y*20;
-    camera.centre.z += f*DEL*camera.right.z*20;
+    camera.centre.x += f*DEL*camera.right.x*30;
+    camera.centre.y += f*DEL*camera.right.y*30;
+    camera.centre.z += f*DEL*camera.right.z*30;
 
-    camera.eye.x += f*DEL*camera.right.x*20;
-    camera.eye.y += f*DEL*camera.right.y*20;
-    camera.eye.z += f*DEL*camera.right.z*20;
+    camera.eye.x += f*DEL*camera.right.x*30;
+    camera.eye.y += f*DEL*camera.right.y*30;
+    camera.eye.z += f*DEL*camera.right.z*30;
 }
 
 void translate_camera_forward_backward(GLfloat f) {
     Point3d dir = normalize(camera.eyeToCentreVector());
-    camera.eye.x += f*dir.x*DEL*20;
-    camera.eye.y += f*dir.y*DEL*20;
-    camera.eye.z += f*dir.z*DEL*20;
+    camera.eye.x += f*dir.x*DEL*30;
+    camera.eye.y += f*dir.y*DEL*30;
+    camera.eye.z += f*dir.z*DEL*30;
 
-    camera.centre.x += f*dir.x*DEL*20;
-    camera.centre.y += f*dir.y*DEL*20;
-    camera.centre.z += f*dir.z*DEL*20;
+    camera.centre.x += f*dir.x*DEL*30;
+    camera.centre.y += f*dir.y*DEL*30;
+    camera.centre.z += f*dir.z*DEL*30;
 }
 
 void translate_camera_up_down(GLfloat f) {

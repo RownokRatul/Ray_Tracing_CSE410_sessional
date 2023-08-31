@@ -119,7 +119,7 @@ class Sphere : public Object {
             // cout << "sphere intersected!\n";
             Point3d intersection_point = ray.getPointAtaDistance(t);
             Point3d normal = normalize(subtractVector(intersection_point, centre));
-            return Intersection(intersection_point, normal, color, t, true);
+            return Intersection(intersection_point, normal, color, t, shininess, true, ambient_coefficient, diffuse_coefficient, reflection_coefficient, specular_coefficient);
         }
 
 

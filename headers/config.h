@@ -8,8 +8,8 @@
 #include <memory>
 #include "camera/camera.h"
 #include "draw3d/objects.h"
-#include "lightSources/pointLight.h"
-#include "lightSources/spotLight.h"
+#include "rayTracing/lightSources/pointLight.h"
+#include "rayTracing/lightSources/spotLight.h"
 
 #define PI 2*acos(0.0)
 #define SCALE_SUBDIVISION 16
@@ -34,6 +34,8 @@ GLfloat aspect_ratio = 1.0f;
 int level_of_recursion = 1;
 int number_of_pixels = 100;
 int number_of_objects = 0;
+
+int normal_mapping_debug = 0;
 
 // scene objects
 vector<Object*> objects;

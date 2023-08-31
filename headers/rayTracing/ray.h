@@ -24,6 +24,11 @@ class Ray {
             return addVector(origin, scaleVector(direction, t));
         }
 
+        Point3d getReflectedRay(Point3d normal) {
+            Point3d reflected = subtractVector(direction, scaleVector(normal, 2.0f*dot_product(direction, normal)));
+            return normalize(reflected);
+        }
+
         void print() {
             cout << "origin: ";
             origin.print();

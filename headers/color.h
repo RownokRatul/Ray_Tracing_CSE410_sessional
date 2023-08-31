@@ -31,4 +31,15 @@ class Color {
         
 };
 
+
+Color addColors(Color a, Color b) {
+    return Color(a.r + b.r, a.g + b.g, a.b + b.b);
+}
+
+Color scaleColor(Color a, GLfloat s) {
+    return Color(a.r*s, a.g*s, a.b*s);
+}
+
+
+
 #endif

@@ -27,6 +27,8 @@ class CheckerBoard : public Object {
             ambient_coefficient = 0.4;
             diffuse_coefficient = 0.4;
             reflection_coefficient = 0.2;
+            shininess = 0;
+            specular_coefficient = 0;
         }
 
         
@@ -57,7 +59,7 @@ class CheckerBoard : public Object {
             Plane plane = Plane(Point3d(0, 0, 1), 0);
             GLfloat t = plane.intersect(ray);
             if(t < 0 || t >= MAX_T) {
-                return Intersection(Point3d(0, 0, 0), Point3d(0, 0, 0), Color(0, 0, 0), t, false);
+                return Intersection(false);
             }
             Point3d intersectionPoint = ray.getPointAtaDistance(t);
             int i = (ceil)(intersectionPoint.x/square_width);
@@ -69,7 +71,7 @@ class CheckerBoard : public Object {
             else {
                 c = Color(1, 1, 1);
             }
-            return Intersection(intersectionPoint, Point3d(0, 0, 1), c, t, true);
+            return Intersection(intersectionPoint, Point3d(0, 0, 1), c, t, shininess, true, ambient_coefficient, diffuse_coefficient, reflection_coefficient, specular_coefficient);
         }
 
 

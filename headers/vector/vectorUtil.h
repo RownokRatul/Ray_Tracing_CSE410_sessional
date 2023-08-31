@@ -51,5 +51,9 @@ Point3d Rodrigues_formula(Point3d v, Point3d k, GLfloat theta) {
     return v_rot;
 }
 
+GLfloat distanceBetweenPoints(Point3d a, Point3d b) {
+    return sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) + (a.z-b.z)*(a.z-b.z));
+}
+
 
 #endif
