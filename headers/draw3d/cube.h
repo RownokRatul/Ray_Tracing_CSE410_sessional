@@ -6,6 +6,8 @@
 #include "objects.h"
 #include "basicShapes.h"
 #include <vector>
+#include "intersection.h"
+#include "polygonIntersection.h"
 
 class Cube : public Object{
 
@@ -90,9 +92,16 @@ class Cube : public Object{
         }
 
 
-        Point3d getIntersectionPoint(Point3d eye, Point3d dir) {
-            Point3d intersectionPoint(1, 1, 1);
-            return intersectionPoint;
+        Intersection getIntersectionPoint(Ray ray) {
+            Intersection in = Intersection(false);
+            for(vector<Point3d> face : faces) {
+                Intersection intersection = getIntersectionWithPolygon(face, ray, this->color);
+                if(intersection.intersects && intersection.t < in.t) {
+                    in = intersection;
+                    // cout << "Cube intersected!\n";
+                }
+            }
+            return in;
         }
 
 

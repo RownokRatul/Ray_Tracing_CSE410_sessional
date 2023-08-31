@@ -5,6 +5,9 @@
 #include <vector>
 #include "../vector/point3d.h"
 #include "../color.h"
+#include "intersection.h"
+#include "../rayTracing/ray.h"
+#include "plane.h"
 
 using namespace std;
 
@@ -42,7 +45,7 @@ class Object {
             }
     
             virtual void draw() = 0;
-            virtual Point3d getIntersectionPoint(Point3d eye, Point3d dir) = 0;
+            virtual Intersection getIntersectionPoint(Ray r) = 0;
             virtual void print() = 0;
 
 };

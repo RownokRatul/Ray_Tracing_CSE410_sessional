@@ -8,8 +8,8 @@
 #include <memory>
 #include "camera/camera.h"
 #include "draw3d/objects.h"
-#include "ray/pointLight.h"
-#include "ray/spotLight.h"
+#include "lightSources/pointLight.h"
+#include "lightSources/spotLight.h"
 
 #define PI 2*acos(0.0)
 #define SCALE_SUBDIVISION 16
@@ -19,9 +19,10 @@
 #define CENTRE_OF_MASS 1.0/3.0
 #define DEL 0.08
 #define INF 20
+#define MAX_T 1000
 
 
-Camera camera(Point3d(200, 60, 0), Point3d(0.1, 60, 0.01), Point3d(0, 1, 0));
+Camera camera(Point3d(200, 0, 60), Point3d(0.1, 0.1, 60), Point3d(0, 0, 1));
 
 GLfloat xz_plane_rotation = 0.0;
 

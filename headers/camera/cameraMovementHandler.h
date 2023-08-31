@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "../config.h"
 #include "../vector/vectorUtil.h"
+#include "../rayTracing/rayTracing.h"
 
 using namespace std;
 
@@ -70,6 +71,14 @@ void translate_camera_up_down(GLfloat f) {
     camera.centre.z += f*camera.up.z*DEL*10;
 }
 
+
+void screenCapture() {
+    cout << "Trying to Capture screen!\n";
+    RayTracing tracing = RayTracing(number_of_pixels, camera);
+    tracing.traceRays();
+    tracing.saveBMPimage("out.bmp");
+}
+
 void fixed_reference_move_upDown(GLfloat f) {
     camera.eye.y += f*DEL;
     camera.up = normalize(cross_product(camera.right, camera.eyeToCentreVector()));
@@ -108,6 +117,8 @@ void usualKeyListener(unsigned char key, int x, int y) {
         case '6':
             tilt_eye(-1.0);
             break;
+        case '0':
+            screenCapture();
     }
     glutPostRedisplay();
 }

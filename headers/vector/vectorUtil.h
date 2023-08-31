@@ -36,6 +36,10 @@ Point3d addVector(Point3d a, Point3d b) {
     return Point3d(a.x+b.x, a.y+b.y, a.z+b.z);
 }
 
+Point3d subtractVector(Point3d a, Point3d b) {
+    return Point3d(a.x-b.x, a.y-b.y, a.z-b.z);
+}
+
 Point3d Rodrigues_formula(Point3d v, Point3d k, GLfloat theta) {
     Point3d v_rot;
     Point3d normalized_k = normalize(k);

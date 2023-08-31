@@ -33,7 +33,7 @@ void reshapeListener(GLsizei width, GLsizei height) {
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60.0f, aspect, 0.1f, 500.0f);
+    gluPerspective(fovy, aspect, near_plane, far_plane);
 }
 
 
@@ -46,9 +46,9 @@ void display() {
              camera.centre.x, camera.centre.y, camera.centre.z,
              camera.up.x, camera.up.y, camera.up.z);
     
-    glRotatef(90.0f, 1, 0, 0);
-    glRotatef(180.0f, 0, 1, 0);
-    glRotatef(-90.0f, 0, 0, 1);
+    // glRotatef(90.0f, 1, 0, 0);
+    // glRotatef(180.0f, 0, 1, 0);
+    // glRotatef(-90.0f, 0, 0, 1);
 
     drawScene();
 

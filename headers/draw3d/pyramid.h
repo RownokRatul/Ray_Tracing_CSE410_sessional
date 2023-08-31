@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include "objects.h"
+#include "intersection.h"
+#include "polygonIntersection.h"
 
 using namespace std;
 
@@ -78,10 +80,18 @@ class Pyramid : public Object {
 
         }
 
-        Point3d getIntersectionPoint(Point3d eye, Point3d dir) {
-            Point3d intersectionPoint(1, 1, 1);
-            return intersectionPoint;
+        Intersection getIntersectionPoint(Ray ray) {
+            Intersection in = Intersection(false);
+            for(vector<Point3d> face : faces) {
+                Intersection intersection = getIntersectionWithPolygon(face, ray, this->color);
+                if(intersection.intersects && intersection.t < in.t) {
+                    in = intersection;
+                    // cout << "Pyramid Intersected!\n";
+                }
+            }
+            return in;
         }
+
 
         void print() {
             cout << "--------Pyramid--------" << endl;

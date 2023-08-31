@@ -98,9 +98,28 @@ class Sphere : public Object {
             glPopMatrix();
         }
 
-        Point3d getIntersectionPoint(Point3d eye, Point3d dir) {
-            Point3d intersectionPoint(1, 1, 1);
-            return intersectionPoint;
+
+        Intersection getIntersectionPoint(Ray ray) {
+            GLfloat a = 1;
+            GLfloat b = 2*dot_product(ray.direction, subtractVector(ray.origin, centre));
+            GLfloat c = dot_product(subtractVector(ray.origin, centre), subtractVector(ray.origin, centre)) - radius*radius;
+            GLfloat d = b*b - 4*a*c;
+            if(d < 0) {
+                return Intersection(false);
+            }
+            GLfloat t1 = (-b + sqrt(d))/(2*a);
+            GLfloat t2 = (-b - sqrt(d))/(2*a);
+            GLfloat t = min(t1, t2);
+            if(t < 0) {
+                t = max(t1, t2);
+            }
+            if(t < 0) {
+                return Intersection(false);
+            }
+            // cout << "sphere intersected!\n";
+            Point3d intersection_point = ray.getPointAtaDistance(t);
+            Point3d normal = normalize(subtractVector(intersection_point, centre));
+            return Intersection(intersection_point, normal, color, t, true);
         }
 
 

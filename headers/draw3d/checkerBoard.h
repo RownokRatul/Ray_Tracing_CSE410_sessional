@@ -3,6 +3,7 @@
 
 
 #include <GL/glut.h>
+#include <cmath>
 #include "../config.h"
 #include "basicShapes.h"
 #include "objects.h"
@@ -37,6 +38,7 @@ class CheckerBoard : public Object {
             glPushMatrix();
             {
                 glTranslatef(camera_x*square_width, camera_y*square_width, 0);
+                // glTranslatef(camera.eye.x, camera.eye.y, 0);
                 color = ((camera_x + camera_y) % 2) ? 0 : 1;
                 for(int i = -INF; i < INF; i++) {
                     for(int j = -INF; j < INF; j++) {
@@ -51,9 +53,23 @@ class CheckerBoard : public Object {
         }
 
 
-        Point3d getIntersectionPoint(Point3d eye, Point3d dir) {
-            Point3d intersectionPoint(1, 1, 1);
-            return intersectionPoint;
+        Intersection getIntersectionPoint(Ray ray) {
+            Plane plane = Plane(Point3d(0, 0, 1), 0);
+            GLfloat t = plane.intersect(ray);
+            if(t < 0 || t >= MAX_T) {
+                return Intersection(Point3d(0, 0, 0), Point3d(0, 0, 0), Color(0, 0, 0), t, false);
+            }
+            Point3d intersectionPoint = ray.getPointAtaDistance(t);
+            int i = (ceil)(intersectionPoint.x/square_width);
+            int j = (ceil)(intersectionPoint.y/square_width);
+            Color c;
+            if((i + j) % 2) {
+                c = Color(0, 0, 0);
+            }
+            else {
+                c = Color(1, 1, 1);
+            }
+            return Intersection(intersectionPoint, Point3d(0, 0, 1), c, t, true);
         }
 
 
